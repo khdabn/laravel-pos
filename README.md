@@ -59,3 +59,7 @@ A basic Point of Sale website created for the Technical 5 Assessment using Larav
 ## Data Source
 
 Customer and user records are stored in PHP arrays.
+
+## Live Website
+
+http://laravelposbuen.fwh.is
