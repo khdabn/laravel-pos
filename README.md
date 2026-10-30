@@ -1,65 +1,90 @@
-# Laravel POS System
+# Laravel POS System — TFA6
 
-A basic Point of Sale website created for the Technical 5 Assessment using Laravel, Blade, and PHP arrays.
+A Laravel application that displays customer and user accounts stored in MySQL. Database tables are created through migrations, populated through a seeder, and queried using Eloquent models.
+
+## Live Website
+
+http://laravelposbuen.fwh.is
 
 ## Pages
 
-- Home — application landing page.
-- About — information about the application.
-- Customer Accounts — displays five sample customer records.
-- User Accounts — displays five sample user records.
+- Home: `/`
+- About: `/about`
+- Customer Accounts: `/customers`
+- User Accounts: `/users`
 
 ## Requirements
 
-- PHP compatible with the project's Laravel version
+- PHP 8.2 or a compatible newer version
 - Composer
-- Git
+- MySQL
 
 ## Local Setup
 
-1. Clone this repository.
-2. Open a terminal in the project folder.
-3. Install dependencies:
+1. Clone the repository and open its folder.
+2. Install PHP dependencies:
 
    ```bash
    composer install
    ```
 
-4. Create the environment file:
+3. Copy `.env.example` to `.env`.
 
-   ```bash
-   cp .env.example .env
+   On Windows Command Prompt:
+
+   ```bat
+   copy .env.example .env
    ```
 
-   On Windows Command Prompt, use `copy .env.example .env` instead.
+4. Create an empty MySQL database named `laravel_pos`.
+5. Set the database connection in `.env`:
 
-5. Generate the application key:
+   ```env
+   DB_CONNECTION=mysql
+   DB_HOST=127.0.0.1
+   DB_PORT=3306
+   DB_DATABASE=laravel_pos
+   DB_USERNAME=root
+   DB_PASSWORD=
+   ```
+
+   Adjust the username and password for your MySQL installation.
+
+6. Generate the application key and clear cached configuration:
 
    ```bash
    php artisan key:generate
+   php artisan config:clear
    ```
 
-6. Start the development server:
+7. Create the tables and insert sample records:
+
+   ```bash
+   php artisan migrate --seed
+   ```
+
+8. Start the local server:
 
    ```bash
    php artisan serve
    ```
 
-7. Open http://127.0.0.1:8000 in your browser.
+9. Open http://127.0.0.1:8000.
 
-## Routes
+## Database
 
-| Page | URL |
-|---|---|
-| Home | `/` |
-| About | `/about` |
-| Customer Accounts | `/customers` |
-| User Accounts | `/users` |
+- Customers: ID, full name, email, phone, and timestamps.
+- Users: ID, unique username, full name, and timestamps.
+- PosSeeder creates five sample customers and five sample users.
 
-## Data Source
+## Application Structure
 
-Customer and user records are stored in PHP arrays.
+- Migrations define the database tables.
+- PosSeeder inserts sample records.
+- Customer and User models retrieve database records.
+- Controllers pass records to Blade views.
+- Blade views display the account tables.
 
-## Live Website
+## Configuration
 
-http://laravelposbuen.fwh.is
+The `.env` file contains environment-specific settings and is excluded from Git. Configure hosted database credentials separately on the hosting server.
