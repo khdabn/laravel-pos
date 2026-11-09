@@ -1,4 +1,4 @@
-# Laravel POS System — TFA6
+# Laravel POS System — TFA7
 
 A Laravel application that displays customer and user accounts stored in MySQL. Database tables are created through migrations, populated through a seeder, and queried using Eloquent models.
 
